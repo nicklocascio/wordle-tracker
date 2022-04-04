@@ -14,8 +14,6 @@ const AuthForm = ({ register, user, onChange, onSubmit }) => {
 
                 {register &&  (
                     <div>
-                        <br />
-                        <br />
                         <label htmlFor="firstName"><b>First Name</b></label>
                         <br />
                         <input 
@@ -32,7 +30,6 @@ const AuthForm = ({ register, user, onChange, onSubmit }) => {
                 
                 {register && (
                     <div>
-                        <br />
                         <br />
                         <label htmlFor="lastName"><b>Last Name</b></label>
                         <br />
@@ -51,7 +48,6 @@ const AuthForm = ({ register, user, onChange, onSubmit }) => {
                 {register && (
                     <div>
                         <br />
-                        <br />
                         <label htmlFor="email"><b>Email</b></label>
                         <br />
                         <input 
@@ -63,12 +59,12 @@ const AuthForm = ({ register, user, onChange, onSubmit }) => {
                             onChange={onChange}
                             required
                         />
+                        <br />
+                        <br />
                     </div>
                 )}
 
                 <div>
-                    <br />
-                    <br />
                     <label htmlFor="username"><b>Username</b></label>
                     <br />
                     <input 
@@ -84,7 +80,6 @@ const AuthForm = ({ register, user, onChange, onSubmit }) => {
                 
                 <div>
                     <br />
-                    <br />
                     <label htmlFor="password"><b>Password</b></label>
                     <br />
                     <input
@@ -98,7 +93,6 @@ const AuthForm = ({ register, user, onChange, onSubmit }) => {
                     />  
                 </div>
 
-                <br />
                 <br />
                 <button type="submit" onSubmit={onSubmit}>Submit</button>
             </form>

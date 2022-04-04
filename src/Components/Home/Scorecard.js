@@ -1,38 +1,58 @@
 import React from "react";
 
-import "./Scorecard.css";
+import "./scorecard.css";
 
 const Scorecard = () => {
+    let headings = []
+    for(let i = 1; i <= 18; i++) {
+        if(i == 10) {
+            headings.push("Out");
+        }
+        headings.push(i);
+    }
+    headings.push("In");
+    headings.push("Total");
+    headings.push("HCP");
+    headings.push("NET");
+
+    /*
+    going to have to come up with something pretty intense for keys to be able to update the scorecard and also keep it persistent
+    */
+
     return (
         <div>
-            <article class="front9">
-                <div class="hole">
-                    <span>Front</span>
-                    <span>1</span>
-                    <span>2</span>
-                    <span>3</span>
-                    <span>4</span>
-                    <span>5</span>
-                    <span>6</span>
-                    <span>7</span>
-                    <span>8</span>
-                    <span>9</span>
-                    <span>Out</span>
+            <div className="scorecard">
+                <div className="line headings">
+                    <span>
+                        Hole
+                    </span>
+                    {headings.map((heading) => (
+                        <span>
+                            {heading}
+                        </span>
+                    ))}
                 </div>
-                <div class="score">
-                    <span>Score</span>
-                    <span>3</span>
-                    <span>5</span>
-                    <span>4</span>
-                    <span>5</span>
-                    <span>3</span>
-                    <span>3</span>
-                    <span>5</span>
-                    <span>4</span>
-                    <span>4</span>
-                    <span class="sub">36</span>
+                <div className="line">
+                    <span>
+                        Nick
+                    </span>
+                    {headings.map((heading) => (
+                        <span>
+                            -
+                        </span>
+                    ))}
                 </div>
-            </article>
+                <div className="line">
+                    <span>
+                        Amy
+                    </span>
+                    {headings.map((heading) => (
+                        <span>
+                            -
+                        </span>
+                    ))}
+                </div>
+            </div>
         </div>
     );
 };
