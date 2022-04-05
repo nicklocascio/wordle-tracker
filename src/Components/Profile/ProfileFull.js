@@ -1,8 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Redirect, useParams } from "react-router-dom";
 import Parse from "parse";
 
+import { getAllGroups } from "../../Services/Group.service";
+
+import GroupForm from "./GroupForm";
+
 const ProfileFull = () => {
+    // load groups
+    const [groups, setGroups] = useState([]);
+
+    useEffect(() => {
+        getAllGroups().then((data) => {
+            setGroups(data);
+        });
+    }, []);
+
+    // checking for authentication
     const { firstName, lastName } = useParams();
 
     let user = null;
@@ -16,15 +30,20 @@ const ProfileFull = () => {
 
     return (
         <div>
-            <h1>
-                Profile
-            </h1>
+            <div>
+                <h1>
+                    Profile
+                </h1>
 
-            <h4>
-                Name: {firstName} {lastName}
-                <br />
-                Email: {user.get("email")}
-            </h4>
+                <h4>
+                    Name: {firstName} {lastName}
+                    <br />
+                    Email: {user.get("email")}
+                </h4>
+            </div>
+            <div>
+                <GroupForm user={user} groups={groups}/>
+            </div>
         </div>
     );
 };
