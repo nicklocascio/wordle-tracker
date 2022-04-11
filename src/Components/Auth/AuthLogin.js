@@ -13,7 +13,6 @@ const AuthLogin = () => {
     const [login, setLogin] = useState(false);
 
     useEffect(() => {
-        console.log('in here');
         if(user && login) {
             loginUser(user).then((userLoggedIn) => {
                 if(userLoggedIn) {

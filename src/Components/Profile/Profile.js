@@ -5,6 +5,8 @@ import ProfileProtectedRoute from "../../Services/ProfileProtectedRoute";
 
 import ProfileFull from "./ProfileFull";
 
+// maybe create a player object for every user so that is more easily modified
+
 const Profile = () => {
     const [flag, setFlag] = useState(false);
     const [path, setPath] = useState("");

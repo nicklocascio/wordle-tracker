@@ -1,6 +1,9 @@
 import Parse from "parse";
 
-export const createUser = (newUser) => {
+import { createGolfer } from "../../Services/Golfer.service";
+
+// use an await to ensure that a golfer is created before setting the user pointer to that golfer
+export async function createUser(newUser) {
     const user = new Parse.User();
 
     user.set("firstName", newUser.firstName);
@@ -9,7 +12,8 @@ export const createUser = (newUser) => {
     user.set("username", newUser.username);
     user.set("password", newUser.password);
 
-    console.log(user);
+    const golfer = await createGolfer(newUser.firstName, newUser.lastName);
+    user.set("golfer", golfer);
 
     return user
         .signUp()
