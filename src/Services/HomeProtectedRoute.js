@@ -1,14 +1,14 @@
-import React, { Component } from "react";
+import React from "react";
 import { Redirect, Link } from "react-router-dom";
 
-const ProfileProtectedRoute = ({ component: Component, flag, ...rest }) => {
+const HomeProtectedRoute = ({ component: Component, flag, ...rest }) => {
     return (
         <div>
             {flag ? (
                 <Redirect to={rest.path} />
             ) : (
                 <div>
-                    <p>You must log in or sign up to view this page</p>
+                    <p>Get started by creating an account or logging in!</p>
                     <button><Link to="/register">Sign Up</Link></button>
                     <br />
                     <br />
@@ -19,4 +19,4 @@ const ProfileProtectedRoute = ({ component: Component, flag, ...rest }) => {
     );
 };
 
-export default ProfileProtectedRoute;
+export default HomeProtectedRoute;
