@@ -16,4 +16,13 @@ export const getGroup = (id) => {
     return query.get(id).then((result) => {
         return result;
     })
-}
+};
+
+export const createGroup = (name) => {
+    const Group = Parse.Object.extend("Group");
+    const group = new Group();
+    group.set("name", name);
+    return group.save().then((result) => {
+        return result;
+    });
+};
