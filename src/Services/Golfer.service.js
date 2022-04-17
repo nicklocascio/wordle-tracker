@@ -37,6 +37,8 @@ export async function joinGroup(golferId, groupId) {
     });
 };
 
+// golfer score submission
+
 export async function getGroupGolfers(golferId, groupId) {
     // start by getting all of the golfers
     const Golfer = Parse.Object.extend("Golfer");

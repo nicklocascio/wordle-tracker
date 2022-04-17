@@ -1,14 +1,14 @@
 import React from "react";
 
-const ScoreForm = () => {
+const ScoreForm = ({ onChange, onSubmit }) => {
     return (
         <div>
-            <form>
+            <form onSubmit={onSubmit}>
                 <label>Paste Your Wordle Result Here</label>
                 <br />
-                <textarea rows={12}></textarea>
+                <textarea rows={12} onChange={onChange}></textarea>
                 <br />
-                <button type="submit">Submit</button>
+                <button type="submit" onSubmit={onSubmit}>Submit</button>
             </form>
         </div>
     );
