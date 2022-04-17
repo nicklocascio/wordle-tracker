@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Redirect, useParams } from "react-router-dom";
 import Parse from "parse";
 
+import { submitScore } from "../../Services/Golfer.service";
+
 import Title from "./Title";
 import ScoreForm from "./ScoreForm";
 import Scorecard from "./Scorecard";
@@ -19,6 +21,9 @@ const HomeFull = () => {
             const score = match[2];
             console.log(match);
             console.log(match[2]);
+            submitScore(golfer.id, score).then((result) => {
+
+            })
             setSubmitResult(false);
         } else {
             setSubmitResult(false);
@@ -36,15 +41,9 @@ const HomeFull = () => {
 
     // checking for authentication and setting golfer
     if(Parse.User.current() && Parse.User.current().authenticated()) {
-        // Parse.User.current().get("golfer").fetch().then((data) => {
-        //     setGolfer(data);
-        //     console.log(golfer);
-        //     try {
-        //         console.log(golfer.get("group"));
-        //     } catch (error) {
-        //         console.log(error);
-        //     }
-        // });
+        Parse.User.current().get("golfer").fetch().then((data) => {
+            setGolfer(data);
+        });
     } else {
         return (
             <Redirect to="/" />
@@ -55,6 +54,7 @@ const HomeFull = () => {
         <div>
             <Title />
             <ScoreForm 
+                golfer={golfer}
                 onChange={onChangeHandler}
                 onSubmit={onSubmitHandler}
             />
