@@ -1,15 +1,19 @@
 import React from "react";
 
-const ScoreForm = () => {
+const ScoreForm = ({ golfer, onChange, onSubmit }) => {
     return (
         <div>
-            <form>
-                <label>Paste Your Wordle Result Here</label>
-                <br />
-                <textarea rows={12}></textarea>
-                <br />
-                <button type="submit">Submit</button>
-            </form>
+            {golfer !== undefined && (
+                <div>
+                    <form onSubmit={onSubmit}>
+                        <label>Paste Your Wordle Result Here</label>
+                        <br />
+                        <textarea rows={12} onChange={onChange}></textarea>
+                        <br />
+                        <button type="submit" onSubmit={onSubmit}>Submit</button>
+                    </form>
+                </div>
+            )}
         </div>
     );
 };

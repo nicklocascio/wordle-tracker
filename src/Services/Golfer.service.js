@@ -8,6 +8,8 @@ export const createGolfer = (firstName, lastName) => {
     const golfer = new Golfer();
     golfer.set("firstName", firstName);
     golfer.set("lastName", lastName);
+    golfer.set("wins", 0);
+    golfer.set("scores", [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]);
     return golfer.save().then((result) => {
         return result;
     });
@@ -33,6 +35,23 @@ export async function joinGroup(golferId, groupId) {
 
     return query.get(golferId).then((golfer) => {
         golfer.set("group", group);
+        return golfer.save();
+    });
+};
+
+// golfer score submission
+export const submitScore = (id, score) => {
+    const Golfer = Parse.Object.extend("Golfer");
+    const query = new Parse.Query(Golfer);
+    return query.get(id).then((golfer) => {
+        let scores = golfer.get("scores");
+        for(let i = 0; i < scores.length; i++) {
+            if(scores[i] == -1) {
+                scores[i] = parseInt(score);
+                break;
+            }
+        }
+        golfer.set("scores", scores);
         return golfer.save();
     });
 };
