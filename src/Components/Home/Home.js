@@ -1,8 +1,10 @@
-import React from "react";
-import ScoreForm from "./ScoreForm";
-import Scorecard from "./Scorecard";
+import React, { useState, useEffect } from "react";
+import Parse from "parse";
 
-import "./home.css"
+import HomeProtectedRoute from "../../Services/HomeProtectedRoute";
+
+import HomeFull from "./HomeFull";
+import Title from "./Title";
 
 /*
 General flow for user:
@@ -14,28 +16,26 @@ General flow for user:
 */
 
 const Home = () => {
+    const [flag, setFlag] = useState(false);
+    const [path, setPath] = useState("");
+
+    useEffect(() => {
+        if(Parse.User.current() && Parse.User.current().authenticated()) {
+            setPath(
+                "/user/home/" +
+                Parse.User.current().get("firstName") + "/" +
+                Parse.User.current().get("lastName")
+            );
+            setFlag(true)
+        } else {
+            setFlag(false);
+        }
+    }, [flag, path]);
+
     return (
         <div>
-            <span className="title-green">
-                G
-            </span>
-            <span className="title-yellow">
-                O
-            </span>
-            <span className="title-green">
-                L
-            </span>
-            <span className="title-yellow">
-                F
-            </span>
-            <span className="title-green">
-                L
-            </span>
-            <span className="title-yellow">
-                E
-            </span>
-            <ScoreForm />
-            <Scorecard />
+            <Title />
+            <HomeProtectedRoute exact path={path} flag={flag} component={HomeFull}/>
         </div>
     );
 };

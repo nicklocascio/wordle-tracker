@@ -13,6 +13,7 @@ import AuthLogin from "./Auth/AuthLogin";
 import AuthLogout from "./Auth/AuthLogout";
 import Profile from "./Profile/Profile";
 import ProfileFull from "./Profile/ProfileFull";
+import HomeFull from "./Home/HomeFull";
 
 const Components = () => {
     return (
@@ -24,6 +25,7 @@ const Components = () => {
 				<Route path="/login" component={AuthLogin} />
 				<Route path="/logout" component={AuthLogout} />
 				<Route path="/profile" component={Profile} />
+				<Route path="/user/home/:firstName/:lastName" component={HomeFull} />
 				<Route path="/user/:firstName/:lastName" component={ProfileFull} />
 				<Redirect to="/" />
 			</Switch>
